@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRUEBAS</title>
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+
+</head>
+<body>
+<div class="container"> 
+    </div>
+        <div id="div_destino">
+          <p>prueba</p>
+          <script >
+            $('#div_destino').load('nivel2.html');
+          </script>
+    </div> 
+  <ul class="collapsible" data-collapsible="accordion">
+    <li><!--Script de cierre sin documentación nivel 2-->      
+      <div class="collapsible-header">
+        <i class="material-icons">chat</i>
+        Script Cierre por falta de DOCUMENTACIÓN
+      </div>
+      <div class="collapsible-body">
+        <form id= "form_Limpiar2">      
+            <div class="switch">
+              <label>
+                Sr.
+                <input type="checkbox" id="inp_genero2">
+                <span class="lever"></span>
+                Sra.
+              </label>            
+            </div><br>
+            <div class="input-field">
+              <input id="inp_nombre2" type="text" class="validate">
+              <label for="inp_nombre2">Nombre Usuario/a</label>
+              <br>
+            </div>
+
+            <div class="input-field">
+              <select multiple id="inp_causa">
+                <option value="" disabled selected >Selecionar</option>
+                <option value="1">Paso a paso del procedimiento realizado.(Solo si es estrictamente necesario).</option>
+                <option value="2">Pantalla adjunta donde se evidencie el error. </option>
+                <option value="3">Datos básicos del cliente, cédula, número de abonado, descripción del proceso.</option>
+              </select>
+              <label>Selecione la causa(s) faltantes para soluciónar el caso</label>
+            </div>
+            <script >
+              $(document).ready(function() {
+              $('select').material_select();
+                });
+            </script>
+        </form>
+
+        <div class="col s6" id="div_boton2">
+          <h7 class="indigo-text darken-3">Presione  copiar para ver script de cierre y llevar al portapapeles
+          <!-- textbox que me recibe la concatenación-->    
+          <textarea id="bar" class="materialize-textarea"></textarea><br>
+          <!--scrip del boton copar-->
+          <script>
+            $("#boton2").click(function(){
+                    });
+                    function resultados2(){
+                    //definición del genero
+                    var checkbox2 = document.getElementById('inp_genero2');
+                    if (checkbox2.checked===false) {
+                        var genero2 = "Sr. ";                                    
+                    }else{
+                        var genero2 = "Sra. ";                                    
+                    } 
+
+                    var Digital2=new Date();
+                    var hora = Digital2.getHours();
+                    
+                    if (hora <12) {
+                      var va_saludo2="Buenos días "
+                    }else{
+                      var va_saludo2="Buenas tardes "  
+                    }
+                    
+                    var va_nombre2 =document.getElementById('inp_nombre2').value;
+                    /*alert(va_causa.val);*/
+                    var va_informe ="Al realizar la ....";
+                    var va_despedida= "bai;"
+                    //validar si los campos se encuentran nullos
+                    if ($("#inp_nombre2").val()===""){
+                      alert("Rellene el campo Nombre Usuario/a");
+                      $("#inp_nombre2").focus();
+                    }else{
+                      //concatenación de las variables
+                      alert(va_saludo2);
+                      alert(genero2);
+                      alert(va_nombre2);
+                      alert(va_informe);
+                      alert(va_despedida);
+
+                      $("#bar").text(va_saludo2+genero2+va_nombre2+'\r'+va_informe+'\r'+"Recuerde adjuntar los siguientes requerimientos"+'\r'+va_despedida);
+                      // copiado del script
+                      var $temp = $("#bar");
+                      alert($temp);
+                      $temp.val($("#bar").text()).select();
+                      document.execCommand("copy");  
+                          }
+                    }/*
+                      //concatenación de las variables sin "Otro:"
+                      $("#bar").text(va_saludo+'\r'+"Diagnostico: "+'\r'+va_diagnostico+'\r'+"Pruebas: "+'\r'+va_pruebas+'\r'+"Solución: "+'\r'+va_solucion+'\r'+"Tipo Error: "+va_buscar+'\r'+"Agradecemos su comprensión"+'\r'+'\r'+"Portal Tecnología");
+                      // copiado del script
+                      var $temp = $("#bar");
+                      $temp.val($("#bar").text()).select();
+                      document.execCommand("copy"); */
+
+          </script>
+          <script >
+            $('#bar').trigger('autoresize');
+          </script>
+          <!-- Boton copiar -->
+          <button class="btn" type="submit" onclick="resultados2()" data-clipboard-action="cut" data-clipboard-target="#bar" id="boton2">Copiar</button>
+          <!--botón limpiar -->
+          <button class="btn" type="submit" onclick="Limpiar2()" id="btn_Limpiar">Limpiar</button>
+        </div>
+      </div>    
+    </li>
+  </ul>
+</div>
+
+
+</body>
+</html>

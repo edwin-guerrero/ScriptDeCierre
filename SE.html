@@ -1,0 +1,122 @@
+
+<html>
+<head>
+  <title>Script Soporte Especializado</title>
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script>
+    //buscador de soporte se
+    $(function(){
+        $("#buscador").autocomplete({
+            source: 'buscador_se.php'                    
+            }
+          );  
+        });
+  </script>
+</head>
+<body>
+<div class="container">  
+      <div class="row col s12" name="titulo">
+        <i class="material-icons">chat</i>
+        Script Cierre Soporte Expecializado
+      </div>
+      <div class="row col s12" name="contenido_script">
+      	<div class="col s6" name="panel_1">
+	        <div name="in-datos">
+		        <form id= "form_Limpiar">      
+		            <div class="switch">
+		              <label>
+		                Sr.
+		                <input type="checkbox" id="inp_genero2">
+		                <span class="lever"></span>
+		                Sra.
+		              </label>            
+		            </div><br>
+		            <div class="input-field">
+		            	<textarea class="materialize-textarea" name="solucion" id="solucion"></textarea>
+		            	<label for="solucion">Solución</label>
+		            </div>
+		            <script >
+		              $(document).ready(function() {
+		              $('select').material_select();
+		                });
+		            </script>
+				    <div id="input_text">
+			           <div class="input-field">
+				           <input type='text' name='buscador' value='' id='buscador'>
+				           <label for="buscador" id="L_error">Tipo de error: </label>
+					   </div>
+				    </div>
+		        </form>
+		    </div>
+      	</div>
+      	<div class="col s6" name="panel_2">
+          <!-- Boton copiar -->
+          <button class="btn" type="submit" onclick="resultado()" data-clipboard-action="cut" data-clipboard-target="#textarea_sd" id="Copiar">Copiar</button>
+          <!--botón limpiar -->
+          <button class="btn" type="submit" onclick="Limpiar()" id="btn_Limpiar">Limpiar</button> <br><br>
+          <h7 class="indigo-text darken-3">Presione  copiar para ver script de cierre y llevar al portapapeles</h7><br>
+          <!-- textbox que me recibe la concatenación-->    
+          <textarea id="textarea_sd" class="materialize-textarea"></textarea><br>
+          <!--script del boton copiar-->
+          <script>
+            $("#Copiar").click(function(){
+                    });
+                    function resultado(){
+                    //definición del genero
+                    var checkbox2 = document.getElementById('inp_genero2');
+                    if (checkbox2.checked===false) {
+                        var genero2 = "Sr. ";                                    
+                    }else{
+                        var genero2 = "Sra. ";                                    
+                    } 
+
+                    var Digital2=new Date();
+                    var hora = Digital2.getHours();
+                    
+                    if (hora <12) {
+                      var va_saludo2="Buenos días "
+                    }else{
+                      var va_saludo2="Buenas tardes "  
+                    }                    
+                    /*alert(va_causa.val);*/
+                    var va_informe = document.getElementById('solucion').value;
+                    //validar si los campos se encuentran nullos
+                    
+					          var va_despedida = "Soporte Especializado TI";
+                    var TError = document.getElementById('buscador').value;
+
+                    if ($("#solucion").val()===""||$("#buscador").val()===""){
+                      alert("Diligencie el campo Solución o Tipo de error");                      
+                    }else{
+                      //concatenación de las variables
+                      
+                      $("#textarea_sd").text(va_saludo2+" "+genero2+'\r'+va_informe+'\r'+'Tipo error: '+TError+'\r'+va_despedida);
+                      // copiado del script
+                      var script_sd = $("#textarea_sd");
+                      script_sd.val($("#textarea_sd").text()).select();
+                      document.execCommand("copy");  
+                          }
+                    }
+          </script>
+          <script >
+            $('#textarea_sd').trigger('autoresize');
+          </script>
+          <script >
+              $("#btn_Limpiar").click(function(event) {
+              $("#form_Limpiar")[0].reset();
+              $("#inp_genero2").focus();
+                });
+          </script> 
+        </div>
+      </div>
+</div>
+
+</body>
+</html>
