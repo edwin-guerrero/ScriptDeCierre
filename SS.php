@@ -11,7 +11,7 @@
         <script src="js/materialize.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script>
-            //buscador de soporte en sitio
+            //buscador de soporte en sitio  PRUEBA
             $(function(){
                 $("#buscador").autocomplete({
                     source: 'buscador_ss.php'                    
